@@ -22,11 +22,12 @@ const displayCategories = (categories) => {
     });
 }
 const loadNews = (categoryId) => {
+    toggleSpinner(true);
     const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data.sort((a, b) => b.total_view - a.total_view)))
-    toggleSpinner(true);
+        .catch(error => console.log(error))
 }
 
 const displayNews = (allNews) => {
@@ -78,7 +79,7 @@ const displayNews = (allNews) => {
                                     <i class="fa-regular fa-star"></i>
                                     <i class="fa-regular fa-star"></i>
                                 </div>
-                                <div class="me-5"> 
+                                <div class="me-2"> 
                                     <!-- Button trigger modal -->
                                     <button onclick="displayModal('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showDetailsModal">
                                     Show Details
@@ -101,6 +102,7 @@ const displayModal = (modalId) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayNewsDetails(data.data))
+        .catch(error => console.log(error))
 }
 
 const displayNewsDetails = (newsId) => {
