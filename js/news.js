@@ -26,21 +26,7 @@ const loadNews = (categoryId) => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayNews(data.data))
-    const highLights = document.getElementById('high')
-    if (displayNews(data.data) == true) {
-        highLights.classList.add('active');
-    }
-    else {
-        highLights.classList.remove('active');
-    }
 }
-/* const highLights = document.getElementById('high')
-if (loadNews() == true) {
-    highLights.classList.add('active');
-}
-else {
-    highLights.classList.remove('active');
-} */
 
 const displayNews = (allNews) => {
     const newsContainer = document.getElementById('news-container');
@@ -76,10 +62,34 @@ const displayNews = (allNews) => {
                                 <h6 class="mt-3">${news.author.name ? news.author.name : 'No name Found'}</h6>
                                 <p class="text-muted">${news.author.published_date ? news.author.published_date.slice(0, 10) : 'No Date Found'}</p>
                             </div>
-
                         </div>
-                        <div> 
-                            <button class="btn btn-primary me-3">Show Details</button> 
+                        <div class="d-flex">
+                            <i class="fa-regular fa-eye mt-1"></i>
+                            <h5 class="ms-3">${news.total_view}</h5>
+                        </div>
+                        <div class="me-5"> 
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showDetailsModal">
+                            Show Details
+                            </button>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="showDetailsModal" tabindex="-1" aria-labelledby="showDetailsModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="showDetailsModalLabel">${news.title}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    ${news.details}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div> 
                         </div>
                     </div>
                 </div>
@@ -87,6 +97,7 @@ const displayNews = (allNews) => {
         </div>
         `;
         newsContainer.appendChild(newsDiv);
+        // const showDetails=document.getElementById('show-details')
     })
 
 }
