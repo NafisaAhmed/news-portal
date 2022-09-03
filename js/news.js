@@ -25,7 +25,7 @@ const loadNews = (categoryId) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${categoryId}`;
     fetch(url)
         .then(res => res.json())
-        .then(data => displayNews(data.data))
+        .then(data => displayNews(data.data.sort((a, b) => b.total_view - a.total_view)))
 }
 
 const displayNews = (allNews) => {
@@ -38,12 +38,12 @@ const displayNews = (allNews) => {
     <h5 class="p-3">${allNews.length} items found </h5>
     `;
     newsCount.appendChild(newsCountText);
-    console.log(allNews);
+
     newsContainer.textContent = '';
 
+    console.log(allNews);
     allNews.forEach(news => {
         const newsDiv = document.createElement('div');
-        // newsDiv.classList.add('ready');
         newsDiv.innerHTML = `
         <div class="card mb-4">
             <div class="row">
@@ -82,7 +82,7 @@ const displayNews = (allNews) => {
                             
                             <!-- Modal -->
                             <div class="modal fade" id="showDetailsModal" tabindex="-1" aria-labelledby="showDetailsModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-dialog ">
                                 <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="showDetailsModalLabel">${news.title}</h5>
