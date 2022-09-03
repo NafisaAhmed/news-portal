@@ -63,9 +63,16 @@ const displayNews = (allNews) => {
                                 <p class="text-muted">${news.author.published_date ? news.author.published_date.slice(0, 10) : 'No Date Found'}</p>
                             </div>
                         </div>
-                        <div class="d-flex">
-                            <i class="fa-regular fa-eye mt-1"></i>
-                            <h5 class="ms-3">${news.total_view}</h5>
+                        <div class="mt-4">
+                            <p><i class="fa-regular fa-eye mt-1"></i><span class="ms-3">${news.total_view ? news.total_view : 'No Views'}</span></p>
+                            
+                        </div>
+                        <div>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
+                            <i class="fa-regular fa-star"></i>
                         </div>
                         <div class="me-5"> 
                             <!-- Button trigger modal -->
