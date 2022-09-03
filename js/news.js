@@ -76,27 +76,9 @@ const displayNews = (allNews) => {
                         </div>
                         <div class="me-5"> 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showDetailsModal">
+                            <button onclick="displayModal('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showDetailsModal">
                             Show Details
-                            </button>
-                            
-                            <!-- Modal -->
-                            <div class="modal fade" id="showDetailsModal" tabindex="-1" aria-labelledby="showDetailsModalLabel" aria-hidden="true">
-                            <div class="modal-dialog ">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="showDetailsModalLabel">${news.title}</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    ${news.details}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                </div>
-                                </div>
-                            </div>
-                            </div> 
+                            </button>                          
                         </div>
                     </div>
                 </div>
@@ -106,6 +88,23 @@ const displayNews = (allNews) => {
         newsContainer.appendChild(newsDiv);
         // const showDetails=document.getElementById('show-details')
     })
+
+}
+const displayModal = (modalId) => {
+    const url = `https://openapi.programming-hero.com/api/news/${modalId}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayNewsDetails(data.data))
+}
+
+const displayNewsDetails = (newsId) => {
+    console.log(newsId);
+    const modalTitle = document.getElementById('showDetailsModalLabel');
+    modalTitle.innerText = newsId[0].title;
+    const newsDetails = document.getElementById('news-details');
+    newsDetails.innerHTML = `
+    <p>${newsId[0].details} </p>
+    `;
 
 }
 loadCategories();
