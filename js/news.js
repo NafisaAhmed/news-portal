@@ -48,7 +48,7 @@ const displayNews = (allNews) => {
     allNews.forEach(news => {
         const newsDiv = document.createElement('div');
         newsDiv.innerHTML = `
-        <div class="row row-cols-sm-1 row-cols-lg-1">
+        <div class="row row-cols-sm-1">
             <div class="col">
                 <div class="card mb-4">
                     <div class="row g-0 row-cols-sm-1">
@@ -79,7 +79,7 @@ const displayNews = (allNews) => {
                                     <i class="fa-regular fa-star"></i>
                                     <i class="fa-regular fa-star"></i>
                                 </div>
-                                <div class="me-2"> 
+                                <div class="me-3"> 
                                     <!-- Button trigger modal -->
                                     <button onclick="displayModal('${news._id}')" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#showDetailsModal">
                                     Show Details
