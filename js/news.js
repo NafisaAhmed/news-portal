@@ -112,7 +112,15 @@ const displayNewsDetails = (newsId) => {
     modalTitle.innerText = newsId[0].title;
     const newsDetails = document.getElementById('news-details');
     newsDetails.innerHTML = `
+    <img src="${newsId[0].thumbnail_url}" class="img-fluid rounded-2 p-3" alt="...">
     <p>${newsId[0].details} </p>
+    <div class="d-flex">
+        <img src="${newsId[0].author.img}" class="img-fluid rounded-4 p-3 rounded-circle" alt="..." style="width: 80px;">
+        <div>
+            <h6 class="mt-3">${newsId[0].author.name ? newsId[0].author.name : 'No name Found'}</h6>
+            <p class="text-muted">${newsId[0].author.published_date ? newsId[0].author.published_date.slice(0, 10) : 'No Date Found'}</p>
+        </div>
+    </div>
     `;
 
 }
