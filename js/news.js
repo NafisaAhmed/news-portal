@@ -121,6 +121,8 @@ const displayNewsDetails = (newsId) => {
             <p class="text-muted">${newsId[0].author.published_date ? newsId[0].author.published_date.slice(0, 10) : 'No Date Found'}</p>
         </div>
     </div>
+    <p>Total View: ${newsId[0].total_view ? newsId[0].total_view : 'No Views'}</span></p>
+    <p>Rating: ${newsId[0].rating.number ? newsId[0].rating.number : 'No Rating'}</span></p>
     `;
 
 }
